@@ -2498,7 +2498,6 @@ main(int argc, char *argv[])
 		die("pledge");
 #endif /* __OpenBSD__ */
 	scan();
-    system("cd ~/scripts; sleep 5; ./ctrl.sh");
 	run();
 	cleanup();
 	XCloseDisplay(dpy);
