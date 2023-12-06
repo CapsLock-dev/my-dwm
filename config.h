@@ -1,7 +1,9 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const int startwithgaps[]    = { 1 };	/* 1 means gaps are used by default, this can be customized for each tag */
+static const unsigned int gappx[]   = { 12 };   /* default gap between windows in pixels, this can be customized for each tag */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -17,6 +19,7 @@ static const char gruvbox_black[] = "#1d2021";
 static const char gruvbox_green[] = "#a9b665";
 static const char gruvbox_white[] = "#d4be98";
 static const char gruvbox_orange[] = "#e78a4e";
+static const char gruvbox_green2[] = "#84a87b";
 
 /*
 *static const char *colors[][3]      = {
@@ -28,8 +31,8 @@ static const char gruvbox_orange[] = "#e78a4e";
 */
 
 //Gruvbox 
-static const char *colors[][3]      = {
-    [SchemeNorm] = { gruvbox_white, gruvbox_black, gruvbox_black },
+static const char *colors[][3] = {
+    [SchemeNorm] = { gruvbox_white, gruvbox_black, gruvbox_green2 },
     [SchemeSel] = { gruvbox_green, gruvbox_black, gruvbox_green },
     [SchemeHid] = { gruvbox_green, gruvbox_black, gruvbox_black },
 };
@@ -107,6 +110,11 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+    // functional gaps 
+    { MODKEY,                       XK_minus,  setgaps,        {.i = -5 } },
+    { MODKEY,                       XK_equal,  setgaps,        {.i = +5 } },
+    { MODKEY|ShiftMask,             XK_minus,  setgaps,        {.i = GAP_RESET } },
+    { MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = GAP_TOGGLE} },
     // Awesome bar
     //{ MODKEY,                       XK_s,      show,           {0} },
 	//{ MODKEY|ShiftMask,             XK_s,      showall,        {0} },
